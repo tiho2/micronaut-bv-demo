@@ -16,9 +16,3 @@ aws:
     bucket: ${AWS_S3_BUCKET}
     region: ${AWS_S3_REGION}
 
-#aws:
-#  access_key_id: ${AWS_ACCESS_KEY_ID:AKIA2U7EQHJ3UEC6D56Q}
-#  secret_access_key: ${AWS_SECRET_ACCESS_KEY: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}
-#  s3:
-#    bucket: ${AWS_S3_BUCKET:my-s3-book-viewer}
-#    region: ${AWS_S3_REGION:eu-central-1}
