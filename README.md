@@ -73,4 +73,6 @@ export AWS_S3_REGION=YOUR_VALUE
 - [ ] batch processing 
    - complete implementation refactoring
 - [ ] rename services
-    - inocnisstent naming. 
+    - inocnisstent naming.
+- [x] - deactivated initial bookviewer acces key (...)    
+    
