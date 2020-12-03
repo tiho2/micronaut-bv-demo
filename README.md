@@ -74,5 +74,5 @@ export AWS_S3_REGION=YOUR_VALUE
    - complete implementation refactoring
 - [ ] rename services
     - inocnisstent naming.
-- [x] - deactivated initial bookviewer acces key (...)    
+- [x] deactivated initial bookviewer acces key (...)    
     
