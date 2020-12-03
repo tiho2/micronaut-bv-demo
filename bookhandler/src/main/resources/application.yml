@@ -1,0 +1,13 @@
+micronaut:
+  application:
+    name: bookhandler
+  server:
+    port: 9082
+rabbitmq.uri:
+  amqp://localhost:5672
+
+# set to -1 to turn off batch processing - all pages put
+# to one and only one batch
+application:
+  batch:
+    size: 10

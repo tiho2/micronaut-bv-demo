@@ -1,0 +1,49 @@
+micronaut:
+  application:
+    name: gateway
+---
+endpoints:
+  health:
+    enabled: true
+---
+#tag::port[]
+micronaut:
+  server:
+    port: 9080
+#end::port[]
+---
+#tag::security[]
+micronaut:
+  security:
+    authentication: bearer # <1>
+    token:
+      jwt:
+        signatures:
+          secret:
+            generator: # <3>
+              secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}"'
+        generator:
+          access-token:
+            expiration: 86400
+
+
+
+#end::security[]
+#tag::tokenpropagation[]
+---
+micronaut:
+  security:
+    token:
+      propagation:
+        enabled: true # <1>
+        service-id-regex: "bookviewer" # <2>
+#end::tokenpropagation[]
+---
+#tag::httpservices[]
+micronaut:
+  http:
+    services:
+      bookviewer:
+        urls:
+          - "http://localhost:9081" # <1>
+#end::httpservices[]

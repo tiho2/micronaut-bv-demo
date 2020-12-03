@@ -1,0 +1,55 @@
+plugins {
+    id "com.github.johnrengelman.shadow" version "6.0.0"
+    id "io.micronaut.application" version '1.0.3'
+}
+
+version "0.1"
+group "page.app"
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+micronaut {
+    runtime "netty"
+    testRuntime "junit5"
+    processing {
+        incremental true
+        annotations "page.app.*"
+    }
+}
+
+
+
+dependencies {
+    implementation("io.micronaut:micronaut-validation")
+    implementation("io.micronaut:micronaut-runtime")
+    implementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut.rabbitmq:micronaut-rabbitmq")
+    implementation 'org.jetbrains:annotations:19.0.0'
+    runtimeOnly("ch.qos.logback:logback-classic")
+
+    implementation("org.apache.pdfbox:pdfbox:2.0.21")
+    compile group: 'org.apache.pdfbox', name: 'pdfbox-tools', version: '2.0.21'
+
+    implementation platform('com.amazonaws:aws-java-sdk-bom:1.11.106')
+    implementation 'com.amazonaws:aws-java-sdk-s3'
+
+    // https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.2.4'
+
+
+
+}
+
+mainClassName = "page.app.Application"
+
+java {
+    sourceCompatibility = JavaVersion.toVersion('1.8')
+    targetCompatibility = JavaVersion.toVersion('1.8')
+}
+
+
+
+
