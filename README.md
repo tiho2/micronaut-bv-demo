@@ -7,21 +7,20 @@ This demo consist of following micronaut microservices:
     1. file upload and ISBN-13 validation (apache commons validation used - it is available in 6.0.6 Hibernate)
     2. insert book db record
     3. queue file for processing
-    4. deque, listen for further processing, events and upload book info with pdf meta data and presigned link to page objects.
+    4. deque, listen for further processing, events and upload book info with pdf metadata and pre-signed link to page objects.
  - book-handler
-   1. deque upladed file
+   1. deque uploaded file
    2. load it as pdf, upload pdf document metadata, split it to pdf pages and 
    3. queue them for further processing 
  - page-app
     1. dequeue pages (single page pdf document)
     2. render them to picture and 
     3. save them to aws s3 as objects and
-    4. render as presigned URL
+    4. render as pre-signed URL
     3. queue processing result.
 
 ![solution overview image](./doc/book_viewer_v0.png)
 
-[Presigned URL example](https://my-s3-book-viewer.s3.eu-central-1.amazonaws.com/2-30?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201203T105331Z&X-Amz-SignedHeaders=host&X-Amz-Expires=172799&X-Amz-Credential=AKIA2U7EQHJ3UEC6D56Q%2F20201203%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Signature=66ec2e09ab5cf42d22344872d6c2fb5a0226e7f74a37dd0025f00dfabab044cd)
 
 
 
@@ -47,7 +46,7 @@ docker run -it --rm -p 5432:5432 -e POSTGRES_USER=dbuser \
 -e POSTGRES_DB=micronaut postgres:11.5-alpine
 ``` 
 - by default, h2 datasource is used, to use postgres datasource
-export following environment variables to terminal (or put to your IDE running configuration (Intellij IDEA)) in which application or test is run 
+export following environment variables to terminal (or put to your IDE running configuration (Intellij IDEA)) and start application or test 
 ```shell script
 export JDBC_URL=jdbc:postgresql://localhost:5432/micronaut
 export JDBC_USER=dbuser
@@ -64,15 +63,19 @@ export AWS_S3_BUCKET=YOUR_VALUE
 export AWS_S3_REGION=YOUR_VALUE
 ```
 ## TBD
+- [x] delete in development initially used aws acces key id and secret (...)    
 - [ ] tests improvement
         - initial unit tests can not be used in with rabbitmq integrated solution 
-        - file is also queued, system change cannot be undone by db record deleting.
-        - currenty docker rabbitmq and postgresql image is used in development integration test, combined with rabbit mq 
+        - the file is also queued, system change cannot be undone by db record deleting.
+        - currently docker rabbitmq and postgresql image is used in development integration test, combined with rabbit mq 
         and postgresql restarting (and S3 object removing if needed (considering billing))   
 - [ ] convert services in java to kotlin
 - [ ] batch processing 
    - complete implementation refactoring
 - [ ] rename services
-    - inocnisstent naming.
-- [x] deactivated initial bookviewer acces key (...)    
+    - inconsistent naming.
+- [x] Use lombok?
+    - No - planed migration to Kotlin and there are some Micronaut related issues [stackoverflow](https://stackoverflow.com/questions/29193806/specifying-order-of-annotation-processors)
+- [ ] SPA client app
+
     
